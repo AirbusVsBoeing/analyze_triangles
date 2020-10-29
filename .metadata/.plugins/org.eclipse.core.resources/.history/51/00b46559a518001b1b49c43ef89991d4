@@ -1,0 +1,16 @@
+package triangle.analyze;
+
+public class Triangle {
+	
+	private Graph graph; 
+	
+	public List<Graph> listTriangles(){
+		
+		
+			
+		
+		
+	}
+	
+	return nu;;
+}

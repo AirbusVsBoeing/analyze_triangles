@@ -1,0 +1,48 @@
+package triangle.analyze;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Triangle {
+	
+	private Graph graph;
+	
+	public List<Graph> listTriangles(){
+		
+		ArrayList<Graph> triangles = new ArrayList<Graph>();
+		
+		for(int i = 0; i < graph.size(); i++) {
+			for(int j = 0; j < graph.size(); j++) {
+				for(int k = 0; k < graph.size(); k++) {
+					if(i!=j && j!=k && k!=i) {
+						if(this.checkTriangle(i, j, k))
+					}
+				}
+			}
+		}
+			
+		
+		return null;
+	}
+	
+	
+	private Graph checkTriangle(int i, int j, int k) {
+		
+		if(graph.get(i).get(j)!=Double.MIN_VALUE && graph.get(j).get(k)!=Double.MIN_VALUE && graph.get(k).get(i)!=Double.MIN_VALUE) {
+			
+			Graph g = new Graph();
+			for(int a = 0; a < graph.size(); a++) {
+				ArrayList<Double> matRow = new ArrayList<Double>();
+				for(int b = 0; b < graph.size(); b++) {
+					matRow.add(graph.get(a).get(b));
+				}
+			}
+			
+		}
+			
+		
+		return null;
+	}
+	
+	
+}

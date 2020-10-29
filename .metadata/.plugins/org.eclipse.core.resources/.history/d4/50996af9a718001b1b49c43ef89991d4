@@ -1,0 +1,13 @@
+package triangle.analyze;
+
+import java.util.ArrayList;
+
+public class Graph extends ArrayList<ArrayList<Double>> {
+
+	
+	private int numEdges; 
+	private int numVertices; 
+	
+	
+	
+}

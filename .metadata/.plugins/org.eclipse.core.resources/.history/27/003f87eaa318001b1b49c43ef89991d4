@@ -1,0 +1,6 @@
+package triangle.analyze;
+
+public class Triangle {
+	
+	private Graph graph; 
+	

@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+/Users/elijaheinstein/Documents/Research/Analyze Triangles/.metadata/.plugins/org.eclipse.jdt.core
+1555235333.index
+3285940282.index
