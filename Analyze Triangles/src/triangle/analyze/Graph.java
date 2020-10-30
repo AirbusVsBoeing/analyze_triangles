@@ -3,7 +3,7 @@ package triangle.analyze;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Graph extends HashMap<Integer,HashMap<Integer,Double>> { 
+public class Graph extends ArrayList<HashMap<Integer,Double>> { 
 
 	
 	public int numEdges; 
