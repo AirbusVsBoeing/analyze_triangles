@@ -1,64 +1,74 @@
 package triangle.analyze;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class Triangle {
 	
-	private Graph graph;
-	private List<Integer> vertices;
-	private List<List<Edge>> triangles;
+	private Edge one, two, three;
+	public String tclass;
+	private double weightOne, weightTwo, weightThree;
 	
-	public Triangle(Graph graph) {
-		this.graph = graph;
-		this.vertices = new ArrayList<Integer>(this.graph.size());
-		System.out.println("num Vertices:" + this.vertices.size());
-		for(int i = 0; i < this.graph.size();i++) {
-			this.vertices.add(i);
+	
+	public Triangle(Edge one, Edge two, Edge three) {
+		this.one = one;
+		this.two = two;
+		this.three = three;
+		this.weightOne = one.weight;
+		this.weightTwo = two.weight;
+		this.weightThree = three.weight;
 		
-		}
-		this.triangles = new ArrayList<List<Edge>>();
+		this.determineClass();
 		
 	}
 	
-	public List<List<Edge>> listTriangles(){
+	private void determineClass() {
 		
+		double avg = (weightOne+weightTwo+weightThree)/3;
 		
-		for(int i = 0; i < this.vertices.size(); i++) {
-			for(int j = 0; j < this.vertices.size(); j++) {
-				//if(i==j) continue;
+		if(weightOne == weightTwo && weightTwo == weightThree && weightThree == weightOne)
+			this.tclass = TriangleClass.EEE;
+		
+		else if(weightOne == weightTwo && weightTwo > weightThree)
+			this.tclass = TriangleClass.EEL;
+		
+		else if(weightOne == weightThree && weightThree > weightTwo)
+			this.tclass = TriangleClass.EEL;
+		
+		else if(weightTwo == weightThree && weightThree > weightOne)
+			this.tclass = TriangleClass.EEL;
+		
+		else if(weightOne == weightTwo && weightThree > weightTwo)
+			this.tclass = TriangleClass.EEH;
+		
+		else if(weightOne == weightThree && weightTwo > weightThree)
+			this.tclass = TriangleClass.EEH;
+		
+		else if(weightTwo == weightThree && weightOne > weightThree)
+			this.tclass = TriangleClass.EEH;
+		
+		else if(weightOne < avg && weightTwo < avg && weightThree >= avg)
+			this.tclass = TriangleClass.LLH;
+		
+		else if(weightTwo < avg && weightThree < avg && weightOne >= avg)
+			this.tclass = TriangleClass.LLH;
+		
+		else if(weightOne < avg && weightThree < avg && weightTwo >= avg)
+			this.tclass = TriangleClass.LLH;
+		
+		else if(weightOne > avg && weightTwo > avg && weightThree <= avg)
+			this.tclass = TriangleClass.HHL;
+		
+		else if(weightTwo > avg && weightThree > avg && weightOne <= avg)
+			this.tclass = TriangleClass.HHL;
+		
+		else this.tclass = TriangleClass.HHL;
 				
-				for(int k = 0; k < this.vertices.size();k++) {
-					if(j==k) continue;
-				
-					checkTriangle(i,j,k);
-				}
-			}
-		}
-	
-		return this.triangles;
 	}
 	
-	
-	private void checkTriangle(int i, int j, int k) {
-		
-		HashMap<Integer,Double> iList = this.graph.get(i);
-		HashMap<Integer,Double> jList = this.graph.get(j);
-		HashMap<Integer,Double> kList = this.graph.get(k);
-		
-		if(iList.containsKey(j) && jList.containsKey(k) && kList.containsKey(i)) {
-			
-			List<Edge> triangle = new ArrayList<Edge>();
-			triangle.add(new Edge(i,j,iList.get(j)));
-			triangle.add(new Edge(j,k,jList.get(k)));
-			triangle.add(new Edge(k,i,kList.get(i)));
-			
-			
-			this.triangles.add(triangle);
-		}
+	@Override
+	public String toString() {
+		return "Class: " + this.tclass + "\n" +one.nodeOne + "-----" + one.weight + "-----" + one.nodeTwo + "\n" + two.nodeOne + "-----" + two.weight + "-----" + two.nodeTwo + "\n" + three.nodeOne + "-----" + three.weight + "-----" + three.nodeTwo + "\n" + "++++++++++++++++++++";
 	}
-	
 	
 }
