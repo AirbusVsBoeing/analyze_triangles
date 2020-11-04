@@ -42,10 +42,10 @@ public class Driver {
 		    //			System.out.println("added"); }
 		    		continue;
 		    	}
-		    	for(int j = 0; j < row.length-1; j++) {
-		    		if(Integer.parseInt(row[j+1]) != 0) {
-		    			System.out.println(Double.parseDouble(row[j]));
-		    			graph.get(j).put(j, Double.parseDouble(row[j]));
+		    	for(int j = 1; j < row.length-1; j++) {
+		    		if(Double.parseDouble(row[j]) != 0.0) {
+		    		//	System.out.println(Double.parseDouble(row[j+1]));
+		    			graph.get(i-1).put(j-1, Double.parseDouble(row[j]));
 		    		}
 		    	}
 		    	
