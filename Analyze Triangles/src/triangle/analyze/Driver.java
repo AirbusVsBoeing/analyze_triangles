@@ -16,14 +16,29 @@ public class Driver {
 	public static void main(String[] args) {
 		Driver d = new Driver();
 		Graph graph = d.readMatrix("src/triangle/analyze/LONDON_GANG.csv");
-		for(int i = 0; i < graph.size(); i++) {
+	/*	for(int i = 0; i < graph.size(); i++) {
 			HashMap<Integer,Double> row = graph.get(i);
 			System.out.print("Node " + i + ":");
 			for(int j : row.keySet()) {
 				System.out.print("("+j+", "+row.get(j)+")");
+			} 
+			System.out.println(""); 
+		} */
+		
+		System.out.println(graph.size());
+		
+		Triangle triangle = new Triangle(graph);
+		List<List<Edge>> triangles = triangle.listTriangles();
+		System.out.println("Number of Triangles:" + triangles.size());
+		
+		for(int i = 0; i < triangles.size(); i++) {
+			List<Edge> tri = triangles.get(i);
+			for(int j = 0; j < tri.size(); j++) {
+				System.out.println(tri.get(j));
 			}
-			System.out.println("");
+			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		}
+		
 	
 	
 	}
@@ -37,9 +52,6 @@ public class Driver {
 		    	String[] row = lines.get(i).split(",");
 		    	if(i == 0) {
 		    		this.graph = new Graph(row.length-1);
-		    //		for(int k = 0; k < graph.size(); k++) {
-		    // 			graph.add(new HashMap<Integer,Double>());
-		    //			System.out.println("added"); }
 		    		continue;
 		    	}
 		    	for(int j = 1; j < row.length-1; j++) {
