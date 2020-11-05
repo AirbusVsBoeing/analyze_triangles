@@ -15,7 +15,7 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		Driver d = new Driver();
-		Graph graph = d.readMatrix("src/triangle/analyze/LONDON_GANG.csv");
+		Graph graph = d.readMatrix("src/triangle/analyze/datasets/London_Gangs/LONDON_GANG.csv");
 	
 		
 		TriangleOps triOps = new TriangleOps(graph);
