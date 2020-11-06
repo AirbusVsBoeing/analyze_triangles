@@ -15,7 +15,6 @@ public class TriangleOps {
 	public TriangleOps(Graph graph) {
 		this.graph = graph;
 		this.vertices = new ArrayList<Integer>(this.graph.size());
-		System.out.println("num Vertices:" + this.vertices.size());
 		for(int i = 0; i < this.graph.size();i++) {
 			this.vertices.add(i);
 		
