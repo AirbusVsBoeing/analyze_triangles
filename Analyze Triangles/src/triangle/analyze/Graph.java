@@ -3,6 +3,7 @@ package triangle.analyze;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@SuppressWarnings("serial")
 public class Graph extends ArrayList<HashMap<Integer,Double>> { 
 
 	

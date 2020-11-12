@@ -4,6 +4,7 @@ package triangle.analyze;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -17,19 +18,23 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		Driver d = new Driver();
-		Graph graph = d.readEdgeList("src/triangle/analyze/datasets/bus_data/hbn.txt");
+		Graph graph = d.readMatrix("src/triangle/analyze/datasets/London_Gangs/LONDON_GANG.csv");
+	/*	for(int i = 0; i < graph.size(); i++) {
+			System.out.print("Node: " + i + "-> ");
+			for(int neighbor : graph.get(i).keySet()) {
+				System.out.print("("+neighbor+", " + graph.get(i).get(neighbor) + "), ");
+			}
+			System.out.println("");
+		} */
 	
 		
-	/*	TriangleOps triOps = new TriangleOps(graph);
+	TriangleOps triOps = new TriangleOps(graph);
+		
 		List<Triangle> triangles = triOps.listTriangles();
 		
-		System.out.println("Number of Triangles:" + triangles.size());
+		printTriangleDistribution(triangles);
 		
-		for (Triangle triangle : triangles) {
-			System.out.println(triangle);
-		} 
 		
-		printTriangleDistribution(triangles); */
 		
 		
 	}
@@ -90,12 +95,51 @@ public class Driver {
 				String[] row = lines.get(i).split("	");
 				if(!this.edgeMappings.containsKey(row[0])) {
 					this.edgeMappings.put(row[0], newNum++);
-					System.out.println(row[0] + ": " + newNum);
+					//System.out.println(row[0] + ": " + newNum);
 				}
 			}
 			
+			this.graph = new Graph(this.edgeMappings.size());
+			
 			for(String s : this.edgeMappings.keySet());
 				//System.out.println(s + ": " + this.edgeMappings.get(s));
+			//	String[] info =lines.get(0).split(" ");
+			//	this.graph.numVertices = Integer.parseInt(info[0]);
+			//	this.graph.numEdges = Integer.parseInt(info[2]);
+				
+			for(int i = 1; i < lines.size(); i++) {
+				String[] row = lines.get(i).split("	");
+				for(int j = 0; j < row.length; ++j);
+					//System.out.println(row[j] + "," +j);
+				int idOne = this.edgeMappings.get(row[0]);
+				int idTwo = this.edgeMappings.get(row[1]);
+				double weight = Double.parseDouble(row[2]);
+				this.graph.get(idOne).put(idTwo, weight); 
+			}
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return this.graph;
+	}	
+	
+	public Graph readMtxFile(String fileName) {
+		try {
+			List<String> lines = Files.readAllLines(Paths.get(fileName));
+			String[] info = lines.get(0).split(" ");
+			this.graph = new Graph(Integer.parseInt(info[0]));
+			this.graph.numVertices = Integer.parseInt(info[0]);
+			this.graph.numEdges = Integer.parseInt(info[2]);
+			for(int i = 1; i < lines.size(); i++) {
+				String[] row = lines.get(i).split(" ");
+				int idOne = Integer.parseInt(row[0])-1;
+				int idTwo = Integer.parseInt(row[1])-1;
+				double weight = Double.parseDouble(row[2]);
+				this.graph.get(idOne).put(idTwo, weight);
+				
+			}
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -103,11 +147,5 @@ public class Driver {
 		
 		return this.graph;
 	}
-	
-	
-	
-	
-	
-
 	
 }

@@ -3,7 +3,6 @@ package triangle.analyze;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class TriangleOps {
 	
@@ -25,13 +24,16 @@ public class TriangleOps {
 	
 	public List<Triangle> listTriangles(){
 		
+		//System.out.println("HERE!!");
 		
 		for(int i = 0; i < this.vertices.size(); i++) {
+			
 			for(int j = 0; j < this.vertices.size(); j++) {
-				//if(i==j) continue;
+				
+				if(i==j) continue;
 				
 				for(int k = 0; k < this.vertices.size();k++) {
-					if(j==k) continue;
+					if(j==k || k == i) continue;
 					checkTriangle(i,j,k);
 				}
 			}
@@ -42,6 +44,8 @@ public class TriangleOps {
 	
 	
 	private void checkTriangle(int i, int j, int k) {
+		
+		System.out.println(i + ", " + j + ", " + k);
 		
 		HashMap<Integer,Double> iList = this.graph.get(i);
 		HashMap<Integer,Double> jList = this.graph.get(j);
