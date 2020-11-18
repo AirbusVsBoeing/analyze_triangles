@@ -71,4 +71,13 @@ public class Triangle {
 		return "Class: " + this.tclass + "\n" +one.nodeOne + "-----" + one.weight + "-----" + one.nodeTwo + "\n" + two.nodeOne + "-----" + two.weight + "-----" + two.nodeTwo + "\n" + three.nodeOne + "-----" + three.weight + "-----" + three.nodeTwo + "\n" + "++++++++++++++++++++";
 	}
 	
+	@Override 
+	public boolean equals(Object obj) {
+		Triangle t2 = (Triangle) obj;
+		if(this.one == t2.one && this.two == t2.two && this.three == t2.three)
+			return true;
+		
+		return false;
+	}
+	
 }

@@ -17,5 +17,13 @@ public class Edge {
 		return Integer.toString(nodeOne) + "-----" + Double.toString(weight) + "-----" + Integer.toString(nodeTwo);
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		Edge e2 = (Edge) obj;
+		if((this.nodeOne == e2.nodeOne && this.nodeTwo == e2.nodeTwo) || (this.nodeOne == e2.nodeTwo && this.nodeTwo == e2.nodeOne))
+			return true;
+		return false;
+	}
+	
 	
 }
