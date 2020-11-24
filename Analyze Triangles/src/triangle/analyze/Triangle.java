@@ -5,9 +5,11 @@ import java.util.ArrayList;
 
 public class Triangle {
 	
-	private Edge one, two, three;
+	public Edge one, two, three;
 	public String tclass;
-	private double weightOne, weightTwo, weightThree;
+	public double weightOne, weightTwo, weightThree;
+	
+	public int nodeOne, nodeTwo, nodeThree;
 	
 	
 	public Triangle(Edge one, Edge two, Edge three) {
@@ -17,6 +19,8 @@ public class Triangle {
 		this.weightOne = one.weight;
 		this.weightTwo = two.weight;
 		this.weightThree = three.weight;
+		
+		
 		
 		this.determineClass();
 		

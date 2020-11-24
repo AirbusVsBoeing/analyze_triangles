@@ -3,39 +3,54 @@ package triangle.analyze;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Collections;
 
 public class TriangleOps {
 	
 	public Graph graph;
-	public List<Integer> vertices;
 	public List<Triangle> triangles;
 	public List<Edge> edges;
+	List<Node> sortedNodes; 
+	List<ArrayList<Node>> arr;
+	HashMap<Integer,Integer> nodeMappings;
+	List<Triple> triples;
 	
+
 	
 	public TriangleOps(Graph graph) {
 		this.graph = graph;
 		this.edges = graph.edges;
-		this.vertices = new ArrayList<Integer>(this.graph.size());
-		for(int i = 0; i < this.graph.size();i++) {
-			this.vertices.add(i);
-		
-		}
+	
 		this.triangles = new ArrayList<Triangle>();
+		this.sortedNodes = new ArrayList<Node>();
+		for(int i = 0; i < graph.size(); i++)
+			this.sortedNodes.add(new Node(i,graph.get(i).size(),graph.get(i)));
+		Collections.sort(sortedNodes);
+		this.nodeMappings = new HashMap<Integer,Integer>();
+		for(int i = 0; i < sortedNodes.size(); i++)
+			nodeMappings.put(sortedNodes.get(i).id, i);
+			
+		this.arr = new ArrayList<ArrayList<Node>>(graph.size());
+		for(int i = 0; i < graph.size(); i++)
+			this.arr.add(new ArrayList<Node>());
+		
+		this.triples = new ArrayList<Triple>();
 		
 	}
 	
 	// naive O(n^3) time triangle listing algorithm
+	
 	public List<Triangle> listTriangles(){
 		
-		//System.out.println("HERE!!");
 		
-		for(int i = 0; i < this.vertices.size(); i++) {
-		//	System.out.println("i:" + i);
-			for(int j = 0; j < this.vertices.size(); j++) {
-		//		System.out.println("j:" +j);
+		
+		for(int i = 0; i < this.sortedNodes.size(); i++) {
+		
+			for(int j = 0; j < this.sortedNodes.size(); j++) {
+		
 				if(i==j) continue;
 				
-				for(int k = 0; k < this.vertices.size();k++) {
+				for(int k = 0; k < this.sortedNodes.size();k++) {
 					if(j==k || k == i) continue;
 					checkTriangle(i,j,k);
 				}
@@ -43,6 +58,63 @@ public class TriangleOps {
 		}
 	
 		return this.triangles;
+	}
+	
+	
+	public List<Triple> forward(){
+		
+	
+		
+		for(Node v : sortedNodes) {
+			List<Pair> nV = v.neighbors;
+			
+
+			for(Pair u : nV) {
+							
+				if(this.nodeMappings.get(u.node) > this.nodeMappings.get(v.id)) {
+					List<Node> intersection = computeIntersection(arr.get(u.node),arr.get(v.id));
+					for(Node w : intersection) {
+						this.triples.add(new Triple(u.node,v.id,w.id));
+					}
+					this.arr.get(u.node).add(v);
+ 				}
+			}
+		}
+		
+		
+		return this.triples;
+	}
+	
+	
+	public List<Node> computeIntersection(ArrayList<Node> a, ArrayList<Node> b){
+		
+	
+		
+		List<Node> intersection = new ArrayList<Node>();
+		int i = 0, j = 0;
+		
+		Collections.sort(a,Collections.reverseOrder());
+		Collections.sort(b,Collections.reverseOrder());
+		
+		
+		
+
+		
+		while(i != a.size() && j != b.size()) {
+			if(a.get(i).id == b.get(j).id) {
+				intersection.add(a.get(i));
+				i++;
+				j++;
+			}
+			else if(a.get(i).id > b.get(j).id)
+				++j;
+			else
+				++i;
+		}
+		
+		
+		
+		return intersection;
 	}
 	
 	
@@ -60,7 +132,6 @@ public class TriangleOps {
 					if(e3 != null) {
 						if(e3.nodeOne == e3.nodeTwo) continue;
 						this.triangles.add(new Triangle(e1,e2,e3));
-					//	System.out.println(new Triangle(e1,e2,e3)); 
 						}
 				}
 			}
@@ -70,10 +141,6 @@ public class TriangleOps {
 	}
 	
 	
-	public List<Triangle> smartListTriangles(){
-		
-		return this.triangles;
-	}
 	
 	
 	// returns an Edge object if there is an edge between node one and two, else returns null
@@ -90,19 +157,18 @@ public class TriangleOps {
 	
 	// checks is (i,j), (j,k), and (k,i) all three are in E -- if yes: then a new triangle is added to the list of triangles, else 
 	// do nothing
-	private void checkTriangle(int i, int j, int k) {
+	public boolean checkTriangle(int i, int j, int k) {
 		
-	
-	//	System.out.println(i + ", " + j + ", " + k);
 		
 		List<Pair> iList = this.graph.get(i);
 		List<Pair> jList = this.graph.get(j);
 		List<Pair> kList = this.graph.get(k);
 		
 		if(hasNode(iList,j) && hasNode(jList,k) && hasNode(kList,i)) {
-		//	System.out.println("YESSSS");
-			this.triangles.add(new Triangle(new Edge(i,j,getWeight(j,iList)),new Edge(j,k,getWeight(k,jList)),new Edge(k,i,getWeight(i,kList))));
+			//this.triangles.add(new Triangle(new Edge(i,j,getWeight(j,iList)),new Edge(j,k,getWeight(k,jList)),new Edge(k,i,getWeight(i,kList))));
+			return true;
 		}
+		return false;
 	}
 	
 	
@@ -110,7 +176,6 @@ public class TriangleOps {
 		
 		for(Pair p : list) {
 			if(p.node == a) {
-			//	System.out.println("YESSSS");
 				return true;
 			}
 		}

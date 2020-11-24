@@ -14,7 +14,6 @@ public class Graph extends ArrayList<ArrayList<Pair>> {
 
 	public Graph(int numVertices){
 		super(numVertices);
-		//System.out.println("Graph Size:" + this.size());
 		for(int i = 0; i < numVertices; i++)
 			this.add(new ArrayList<Pair>());
 	}

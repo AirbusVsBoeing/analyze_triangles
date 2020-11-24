@@ -18,33 +18,56 @@ public class Driver {
 	
 	public static void main(String[] args) throws Exception {
 		Driver d = new Driver();
-		Graph graph = d.readEdgeList("src/triangle/analyze/datasets/power-494-bus.txt");
+		Graph graph = d.readEdgeList("src/triangle/analyze/datasets/bus-data/abn.txt");
 		
 		TriangleOps to = new TriangleOps(graph);
-		List<Triangle> triangles = to.listTrianglesE();
+		List<Triple> triples = to.forward();
+		List<Triangle> triangles = getTriangles(triples,to.edges);
 		
-		System.out.println("Num Vertices:" + graph.size());
-		System.out.println("Num Edges:" + graph.edges.size());
-		System.out.println("Num Triangles:" + triangles.size());
+		System.out.println("Num vertices: " + graph.size());
+		System.out.println("Num edges:" + graph.edges.size());
 		
-		/*List<Edge> edges = graph.edges;
-		for(int i = 0; i < edges.size();i++) {
-			Edge current = edges.get(i);
-			for(int j = i+1; j < edges.size(); j++) {
-				Edge other = edges.get(j);
-				if(current.equals(other)) {
-					System.out.println(current);
-					System.out.println(other);
-					System.out.println("++++++++++");
-				}
-			}
-		} */
+		System.out.println("num triangles:" + triangles.size());
 		
-		for(Triangle triangle : triangles)
-	    	System.out.println(triangle);
-	
+		printTriangleDistribution(triangles);
+		//System.out.println("num triples:" + triples.size()); 
+		
+		
+		
+			
 	}
 	
+	
+	private static List<Triangle> getTriangles(List<Triple> triples, List<Edge> edges){
+		
+		List<Edge> tri = new ArrayList<Edge>();
+		List<Triangle> triangles = new ArrayList<Triangle>();
+		
+		for(Triple triple : triples) {
+			
+			for(Edge e : edges) {
+				if((e.nodeOne == triple.a && e.nodeTwo == triple.b) || (e.nodeOne == triple.b && e.nodeTwo == triple.a)) {
+					tri.add(e);
+				//	System.out.println(e + " / triple.a:" + triple.a + ", " + "triple.b:" + triple.b);
+				}
+				if((e.nodeOne == triple.b && e.nodeTwo == triple.c) || (e.nodeOne == triple.c && e.nodeTwo == triple.b)) {
+					tri.add(e);
+				}
+				if((e.nodeOne == triple.a && e.nodeTwo == triple.c) || (e.nodeOne == triple.c && e.nodeTwo == triple.a)) {
+					tri.add(e);
+				}
+					
+			}
+			if(tri.size() == 3) {
+				triangles.add(new Triangle(tri.get(0),tri.get(1),tri.get(2)));
+				
+			}
+			tri.clear();
+		}
+		return triangles;
+	}
+	
+
 	
 	public static void printTriangleDistribution(List<Triangle> triangles) {
 		int EEE=0,EEL=0,EEH=0,HHL=0,LLH=0;
@@ -73,19 +96,18 @@ public class Driver {
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(fileName));
 		    for(int i = 0; i < lines.size(); i++) {
-		    	String[] row = lines.get(i).split("	");
+		    	String[] row = lines.get(i).split(",");
 		   // 	System.out.println("row.length:" + row.length);
-		    //	if(i == 0) {
-		    //		this.graph = new Graph(row.length-1);
-		    	//	this.graph.edges = new ArrayList<Edge>();
-		    //		continue;
-		    //	}
-		    	this.graph = new Graph(row.length);
-		    	for(int j = 0; j < row.length-1; j++) {
+		    	if(i == 0) {
+		    		this.graph = new Graph(row.length-1);
+		    		this.graph.edges = new ArrayList<Edge>();
+		    		continue;
+		    	}
+		    	//this.graph = new Graph(row.length);
+		    	for(int j = 1; j < row.length-1; j++) {
 		    		if(Double.parseDouble(row[j]) != 0.0) {
-		    			edges.add(new Edge(i,j,Double.parseDouble(row[j])));
-		    			this.graph.get(i).add(new Pair(j,Double.parseDouble(row[j])));
-		    			//System.out.println("i:"+i+"j:"+j+"weight:"+Double.parseDouble(row[j]));
+		    			edges.add(new Edge(i-1,j-1,Double.parseDouble(row[j])));
+		    			this.graph.get(i-1).add(new Pair(j-1,Double.parseDouble(row[j])));
 		    		}
 		    	}
 		    	
@@ -96,7 +118,7 @@ public class Driver {
 		}
 		
 		this.graph.edges = deleteDuplicateEdges(edges);
-		return this.graph;  
+		return this.graph;   
 		
 	/*	this.graph = new Graph(6);
 	
@@ -120,6 +142,7 @@ public class Driver {
 		two.add(new Pair(0,1.0));
 		two.add(new Pair(1,1.0));
 		two.add(new Pair(3,1.0));
+		two.add(new Pair(5,1.0));
 		
 		this.graph.add(two);
 		
@@ -142,6 +165,7 @@ public class Driver {
 		ArrayList<Pair> five = new ArrayList<Pair>();
 		five.add(new Pair(3,1.0));
 		five.add(new Pair(4,0.0));
+		five.add(new Pair(2,1.0));
 		
 		this.graph.add(five);
 		
@@ -152,6 +176,7 @@ public class Driver {
 		edges.add(new Edge(0,3,1.0));
 		edges.add(new Edge(1,2,1.0));
 		edges.add(new Edge(2,3,1.0));
+		edges.add(new Edge(2,5,1.0));
 		edges.add(new Edge(3,4,1.0));
 		edges.add(new Edge(3,5,1.0));
 		edges.add(new Edge(4,5,1.0));
@@ -159,8 +184,8 @@ public class Driver {
 		this.graph.edges = edges; 
 		
 	
-		return this.graph; 
-		*/
+		return this.graph; */
+		
 		
 	}
 	
@@ -179,65 +204,49 @@ public class Driver {
 	
 	public Graph readEdgeList(String fileName){
 		
-		this.newNum = 0;
+ 		this.newNum = 0;
 		this.edgeMappings = new HashMap<String,Integer>();
 		List<Edge> edges = new ArrayList<Edge>();
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(fileName));
 			for(int i = 0; i < lines.size(); i++) {
-				String[] row = lines.get(i).split(" ");
+				String[] row = lines.get(i).split("  ");
 				if(!this.edgeMappings.containsKey(row[0])) {
 					this.edgeMappings.put(row[0], newNum++);
-				//	System.out.println(row[0] + ": " + (newNum-1));
+				
 				}
 			}
 			
 			this.graph = new Graph(this.edgeMappings.size());
 			
 			for(int i = 0; i < lines.size(); i++) {
-				String[] row = lines.get(i).split(" ");
+				String[] row = lines.get(i).split("	");
 				int idOne = this.edgeMappings.get(row[0]);
+				if(row[0].equals("")) {
+					break;
+				}
+				//int idOne = Integer.parseInt(row[0]);
 				int idTwo = this.edgeMappings.get(row[1]);
-				//if(idOne == idTwo) continue;
+				//int idTwo = Integer.parseInt(row[1]);
 				double weight = Double.parseDouble(row[2]);
 				edges.add(new Edge(idOne,idTwo,weight));
+				
 				this.graph.get(idOne).add(new Pair(idTwo,weight));
-				if(idOne != idTwo)
-					this.graph.get(idTwo).add(new Pair(idOne,weight));
+			//	if(idOne != idTwo)
+			//		this.graph.get(idTwo).add(new Pair(idOne,weight));
 			
 			}
 			
 		}
 		catch(Exception e) {
+			System.out.println("Yes it's an exception! -- exiting!");
 			e.printStackTrace();
+			System.exit(-1);
 		}
 		
 		this.graph.edges = deleteDuplicateEdges(edges);
 		return this.graph;
 	}	
 	
-	public Graph readMtxFile(String fileName) {
-		try {
-			List<String> lines = Files.readAllLines(Paths.get(fileName));
-			String[] info = lines.get(0).split(" ");
-			this.graph = new Graph(Integer.parseInt(info[0]));
-			this.graph.numVertices = Integer.parseInt(info[0]);
-			this.graph.numEdges = Integer.parseInt(info[2]);
-			for(int i = 1; i < lines.size(); i++) {
-				String[] row = lines.get(i).split(" ");
-				int idOne = Integer.parseInt(row[0])-1;
-				int idTwo = Integer.parseInt(row[1])-1;
-				double weight = Double.parseDouble(row[2]);
-				//this.graph.get(idOne).put(idTwo, weight);
-				this.graph.get(idOne).add(new Pair(idTwo,weight));
-				
-			}
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		return this.graph;
-	}
 	
 }
