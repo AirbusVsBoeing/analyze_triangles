@@ -1,10 +1,14 @@
 package triangle.analyze;
 
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 
@@ -16,22 +20,43 @@ public class Driver {
 	
 	
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
+		
+		PrintStream out;
+		try {
+			out = new PrintStream(new FileOutputStream("output.txt", true), true);
+			System.setOut(out);
+			System.out.flush();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} 
+		
+		
 		Driver d = new Driver();
-		Graph graph = d.readEdgeList("src/triangle/analyze/datasets/bus-data/abn.txt");
+		Graph graph = d.readMatrix("src/triangle/analyze/datasets/London-Gangs/LONDON_GANG.csv");
+		
+		
 		
 		TriangleOps to = new TriangleOps(graph);
 		List<Triple> triples = to.forward();
 		List<Triangle> triangles = getTriangles(triples,to.edges);
 		
-		System.out.println("Num vertices: " + graph.size());
-		System.out.println("Num edges:" + graph.edges.size());
+		for(Triangle triangle : triangles) {
+			
+			ArrayList<Double> weights = new ArrayList<Double>();
+			weights.add(triangle.weightOne);
+			weights.add(triangle.weightTwo);
+			weights.add(triangle.weightThree);
+			Collections.sort(weights);
+			
+			if(triangle.tclass == TriangleClass.EEL)
+				System.out.println(Double.toString(weights.get(0)) + " " + Double.toString(weights.get(1)) + " " + Double.toString(weights.get(2)));
+		}
 		
-		System.out.println("num triangles:" + triangles.size());
 		
-		printTriangleDistribution(triangles);
-		//System.out.println("num triples:" + triples.size()); 
+		//printTriangleDistribution(triangles);
 		
+			
 		
 		
 			
@@ -205,7 +230,7 @@ public class Driver {
 	public Graph readEdgeList(String fileName){
 		
  		this.newNum = 0;
-		this.edgeMappings = new HashMap<String,Integer>();
+ 		this.edgeMappings = new HashMap<String,Integer>();
 		List<Edge> edges = new ArrayList<Edge>();
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(fileName));
@@ -213,27 +238,40 @@ public class Driver {
 				String[] row = lines.get(i).split("  ");
 				if(!this.edgeMappings.containsKey(row[0])) {
 					this.edgeMappings.put(row[0], newNum++);
-				
 				}
+				if(!this.edgeMappings.containsKey(row[1])) {
+					this.edgeMappings.put(row[1], newNum++);
+				}
+			//	System.out.println(row[0] +", " + row[1] + ", " + row[2]);
 			}
 			
-			this.graph = new Graph(this.edgeMappings.size());
+			this.graph = new Graph(edgeMappings.size());
+			
+			
 			
 			for(int i = 0; i < lines.size(); i++) {
-				String[] row = lines.get(i).split("	");
+				String[] row = lines.get(i).split("  ");
 				int idOne = this.edgeMappings.get(row[0]);
 				if(row[0].equals("")) {
 					break;
 				}
 				//int idOne = Integer.parseInt(row[0]);
 				int idTwo = this.edgeMappings.get(row[1]);
+				double weight;
 				//int idTwo = Integer.parseInt(row[1]);
-				double weight = Double.parseDouble(row[2]);
+				if(row.length < 3) {
+					weight = 2.0;
+				}
+				else {
+				
+					//System.out.println("row.size():" + row.length);
+				//System.out.println(row.length);
+				 weight = Double.parseDouble(row[2]);
+				}
+				
 				edges.add(new Edge(idOne,idTwo,weight));
 				
 				this.graph.get(idOne).add(new Pair(idTwo,weight));
-			//	if(idOne != idTwo)
-			//		this.graph.get(idTwo).add(new Pair(idOne,weight));
 			
 			}
 			

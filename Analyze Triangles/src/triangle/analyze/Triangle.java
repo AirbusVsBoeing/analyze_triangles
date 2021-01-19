@@ -26,7 +26,7 @@ public class Triangle {
 		
 	}
 	
-	private void determineClass() {
+	private void determineClass(){
 		
 		double avg = (weightOne+weightTwo+weightThree)/3;
 		
@@ -51,23 +51,27 @@ public class Triangle {
 		else if(weightTwo == weightThree && weightOne > weightThree)
 			this.tclass = TriangleClass.EEH;
 		
-		else if(weightOne < avg && weightTwo < avg && weightThree >= avg)
+		else if((weightOne != weightTwo) && (weightOne < avg && weightTwo < avg) && weightThree >= avg)
 			this.tclass = TriangleClass.LLH;
 		
-		else if(weightTwo < avg && weightThree < avg && weightOne >= avg)
+		else if((weightTwo != weightThree) && (weightTwo < avg && weightThree < avg) && weightOne >= avg)
 			this.tclass = TriangleClass.LLH;
 		
-		else if(weightOne < avg && weightThree < avg && weightTwo >= avg)
+		else if((weightOne != weightThree) && (weightOne < avg && weightThree < avg) && weightTwo >= avg)
 			this.tclass = TriangleClass.LLH;
 		
-		else if(weightOne > avg && weightTwo > avg && weightThree <= avg)
+		else if((weightOne != weightTwo) && (weightOne >= avg && weightTwo >= avg) && weightThree < avg)
 			this.tclass = TriangleClass.HHL;
 		
-		else if(weightTwo > avg && weightThree > avg && weightOne <= avg)
+		else if((weightTwo != weightThree) && (weightTwo >= avg && weightThree >= avg) && weightOne < avg)
 			this.tclass = TriangleClass.HHL;
 		
-		else this.tclass = TriangleClass.HHL;
-				
+		else if((weightOne != weightThree) && (weightOne >= avg && weightThree >= avg) && weightTwo < avg)
+			this.tclass = TriangleClass.HHL;
+		
+		else {
+			System.out.println("Unable to determine class");
+		}		
 	}
 	
 	@Override

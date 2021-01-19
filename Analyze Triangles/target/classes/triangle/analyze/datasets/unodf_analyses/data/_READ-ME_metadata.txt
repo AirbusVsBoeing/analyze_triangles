@@ -1,0 +1,302 @@
+#########################
+The data sets available here are parts of the following article:
+
+Cantor M, Pires MM, Marquitti FDM, Raimundo RLG, Sebastian-Gonzalez E, Coltri P, Perez I, Barneche D, Brandt DYC, Nunes K, Daura-Jorge FG, Floeter SR, Meyer D, Guimaraes PR Jr. Nestedness across biological scales.
+
+If you use any data set please cite the article above and the original reference for the data set as described below.
+########################
+
+
+
+1. File: mol_yeast_spliceosome.txt
+
+Summary: This file contains the adjacency matrix that depicts the network of proteins in the yeast spliceosome. We retrieved 103 spliceosome proteins from the STRING database [1; http://string-db.org]. The rows and columns contain each protein (nodes) and the cell values (links) are the level of support for the occurrence of interaction between them (i.e. probability that interaction is correct). This reliability score comes from the combination of different experimental evidences, and goes from zero (no evidence) to one (strong support for interaction). 
+
+Biological system: Spliceosome protein-protein networks in Saccharomyces cerevisiae
+Level of organization: Molecular
+Node type: proteins
+Interaction type: physical association
+Weighted links value: Experimental evidence for interaction
+Network size (number of nodes): 103
+Connectance (realized/possible links): 0.78
+Main References:
+[1] Szklarczyk D, Franceschini A, Kuhn M, Simonovic M, Roth A, Minguez P, Doerks T, Stark M, Muller J, Bork P, Jensen LJ, von Mering C. 2011. The STRING database in 2011: functional interaction networks of proteins, globally integrated and scored. Nucleic Acids Res 39:D561-D568. doi: 10.1093/nar/gkq973
+
+
+
+2. File: mol_genes_celegans.txt
+
+Summary: This file contains the adjacency matrix that depicts the network of interactions among the genes of the worm C. elegans. Using the systematic interaction analysis (GSI), 11 query genes mutations were tested for genetic interactions with 454 target genes [1,2]. In the matrix, each row and column is a target gene (nodes) and each cell is the Simpson index (links) indicating the shared interactions with query genes.
+
+Biological system: Genetic network in Caenorhabdtis elegans
+Level of organization: Molecular
+Node type: target genes
+Interaction type: shared interactions with query genes
+Weighted links value: Simpson index 
+Network size (number of nodes): 454
+Connectance (realized/possible links): 0.48
+Main References:
+[1] Byrne AB, Weirauch MT, Wong V, Koeva M, Dixon SJ, Stuart JM, Roy PJ. 2007. A global analysis of genetic interactions in Caenorhabditis elegans. J Biol 6:8 doi: jbiol.com/content/6/3/8
+[2] Chatr-aryamontri A, Breitkreutz BJ, Oughtred R, Boucher L, Heinicke S, Chen D, Stark C, Breitkreutz A, Kolas N, O'Donnell L, Reguly T, Nixon J, Ramage L, Winter A, Sellam A, Chang C, Hirschman J, Theesfeld C, Rust J, Livstone MS, Dolinski K, Tyers M. 2014. The BioGRID interaction database: 2015 update. Nucleic acids research, p.gku1204. doi: 10.1093/nar/gku1204
+
+
+
+3. File: mol_yeast_nuclearexosome.txt 
+
+Summary: This file contains the edge list that depicts the network of proteins in the yeast nuclear exosome. We retrieved 44 proteins from the IMEx database [1,2]. The first two columns contain a pair of proteins (nodes) and the third column values (links) indicates the level of support for the occurrence of interaction between them (i.e. probability that interaction is correct). This reliability score comes from the combination of different experimental evidences, and goes from zero (no evidence) to one (strong support for interaction). 
+
+Biological system: Exonuclease complex exosome protein-protein networks in Saccharomyces cerevisiae. 
+Level of organization: Molecular
+Node type: proteins
+Interaction type: physical association
+Weighted links value: Experimental evidence for interaction
+Network size (number of nodes): 44
+Connectance (realized/possible links): 0.10
+Main References:
+[1] Krogan NJ, Cagney G, Yu H, Zhong G, Guo X, Ignatchenko A, Li J, Pu S, Datta N, Tikuisis AP, Punna T, Peregr??n-Alvarez JM, Shales M, Zhang X, Davey M, Robinson MD, Paccanaro A, Bray JE, Sheung A, Beattie B, Richards DP, Canadien V, Lalev A, Mena F, Wong P, Starostine A, Canete MM, Vlasblom J, Wu S, Orsi C, Collins DR, Chandran S, Haw R, Rilstone JJ, Gandi K, Thompson NJ, Musso G, St Onge P, Ghanny S, Lam MHY, Butland G, Altaf-U AM, Kanaya S, Shilatifard A, O'Shea E, Weissman JS, Ingles CJ, Hughes TR, Parkinson J, Gerstein M, Wodak SJ, Emili A, Greenblatt JF. 2006. Global landscape of protein complexes in the yeast Saccharomyces cerevisiae. Nature 440:637-643. doi:10.1038/nature04670
+[2] Orchard S, Kerrien S, Abbani S, Aranda B, Bhate J, Bidwell S, Bridge A, Briganti L, Brinkman FS, Cesareni G, Chatr-aryamontri A, Chautard E, Chen C, Dumousseau M, Goll J, Hancock REW, Hannick LI, Jurisica I, Khadake J, Lynn DJ, Mahadevan U, Perfetto L, Raghunath A, Ricard-Blum S, Roechert B, Salwinski L, St??mpflen V, Tyers M, Uetz P, Xenarios I, Hermjakob H. 2012. Protein interaction data curation: the International Molecular Exchange (IMEx) consortium. Nature Methods 9:345-350. doi:10.1038/nmeth.1931
+
+
+4. File: ind_craniam.txt
+
+Summary: This file contains the adjacency matrix that depicts the network representations of a complex morphological structure, the human cranium. In this morphological network, nodes represented anatomically-defined measurements between landmarks points, and links represented the Pearson correlation coefficients among the measurements between the landmarks [1]. We analyzed 44 cranial measurements from a sample of 1367 male individuals from 30 recent modern human populations distributed worldwide [2]. In this file, we averaged the 44 cranial measurements for each of the 30 populations, so the row and columns are the measurements and the cell values are the Pearson correlation.
+
+Biological system: Cranium morphology of human males
+Level of organization: individual
+Node type: anatomical landmarks (morphometric variables) 
+Interaction type: cranial measurements
+Weighted links value: Pearson's correlation
+Network size (number of nodes): 44
+Connectance (realized/possible links): 0.73
+Main References:
+[1] Perez SI, Aguiar MAM, Guimaraes PR Jr, Reis SF. 2009. Searching for modular structure in complex phenotypes: inferences from network theory. Evol Biol 36:416-422. doi:10.1007/s11692-009-9074-7.
+[2] Howells WW. 1973. Cranial variation in man: A study by multivariate analysis of patterns of difference among recent human populations.Papers Peabody Museum Archaeol Ethnol 67:1-259. 
+
+
+5. File: ind_craniaf.txt
+
+Summary: This file contains the adjacency matrix that depicts the network representations of a complex morphological structure, the human cranium. In this morphological network, nodes represented anatomically-defined measurements between landmarks points, and links represented the Pearson correlation coefficients among the measurements between the landmarks [1]. We analyzed 44 cranial measurements from a sample of 1823 female individuals from 30 recent modern human populations distributed worldwide [2]. In this file, we averaged the 44 cranial measurements for each of the 30 populations, so the row and columns are the measurements and the cell values are the Pearson correlation.
+
+Biological system: Cranium morphology of human females
+Level of organization: individual
+Node type: anatomical landmarks (morphometric variables) 
+Interaction type: cranial measurements
+Weighted links value: Pearson's correlation
+Network size (number of nodes): 44
+Connectance (realized/possible links): 0.71
+Main References:
+[1] Perez SI, Aguiar MAM, Guimaraes PR Jr, Reis SF. 2009. Searching for modular structure in complex phenotypes: inferences from network theory. Evol Biol 36:416-422. doi:10.1007/s11692-009-9074-7.
+[2] Howells WW. 1973. Cranial variation in man: A study by multivariate analysis of patterns of difference among recent human populations.Papers Peabody Museum Archaeol Ethnol 67:1-259. 
+
+
+6.File: ind_craniaeurope.txt
+
+Summary: This file contains the adjacency matrix that depicts the network representations of a complex morphological structure, the human cranium. In this morphological network, nodes represented anatomically-defined measurements between landmarks points, and links represented the Pearson correlation coefficients among the measurements between the landmarks [1]. We analyzed 44 cranial measurements from a 164 male individuals from 30 from Europe (Norse: Medieval samples from Oslo; Zalavar: recent samples from Hungary; and Berg: recent samples from Carinthia, Austria) [2]. In this file, we averaged the 44 cranial measurements for all 164 male individuals, so the row and columns are the measurements and the cell values are the Pearson correlation.
+
+Biological system: Cranium morphology of human males in Europe
+Level of organization: individual
+Node type: anatomical landmarks (morphometric variables) 
+Interaction type: cranial measurements
+Weighted links value: Pearson's correlation
+Network size (number of nodes): 44
+Connectance (realized/possible links): 0.76
+Main References:
+[1] Perez SI, Aguiar MAM, Guimaraes PR Jr, Reis SF. 2009. Searching for modular structure in complex phenotypes: inferences from network theory. Evol Biol 36:416-422. doi:10.1007/s11692-009-9074-7.
+[2] Howells WW. 1973. Cranial variation in man: A study by multivariate analysis of patterns of difference among recent human populations.Papers Peabody Museum Archaeol Ethnol 67:1-259. 
+
+
+7. File: pop_sotalia.txt
+
+Summary: This file contains the adjacency matrix that depicts the social network representations of Guiana dolphins, Sotalia guianensis [1]. In this network, nodes represent photo-identified individuals, and links represent their social relationships, the strength of which was inferred based on co-occurrence in groups. Each row and column is an individual and the cell values are the proportion of times individuals were seen together estimated by the Half-weight Association index.
+
+Biological system: Guiana dolphin society
+Level of organization: Population
+Node type: individuals
+Interaction type: social relationship
+Weighted links value: Half-weight association index
+Network size (number of nodes): 33
+Connectance (realized/possible links): 0.56
+Main References:
+[1] Cantor M, Wedekin LL, Guimaraes PR Jr, Rossi-Santos MR, Simoes-Lopes PC. 2012. Disentangling social networks from spatiotemporal dynamics: the temporal structure of a dolphin society. An Behav 84:641-651. doi: 10.1016/j.anbehav.2012.06.019
+
+
+8. File: pop_tursiops.txt
+
+Summary: This file contains the adjacency matrix that depicts the social network representations of bottlenose dolphins, Tursiops truncatus [1]. In this network, nodes represent photo-identified individuals, and links represent their social relationships, the strength of which was inferred based on co-occurrence in groups. Each row and column is an individual and the cell values are the proportion of times individuals were seen together estimated by the Half-weight Association index.
+
+Biological system: Bottlenose dolphin society
+Level of organization: Population
+Node type: individuals
+Interaction type: social relationship
+Weighted links value: Half-weight association index
+Network size (number of nodes): 35
+Connectance (realized/possible links): 0.69
+Main References:
+[1] Daura-Jorge FG, Cantor M, Ingram S, Lusseau D, Simoes-Lopes PC. 2012. The structure of a bottlenose dolphin society is coupled to a unique foraging cooperation with artisanal fishermen. Biol Lett 8:702-705. doi:10.1098/rsbl.2012.0174
+
+
+9. File: pop_hyenas.txt
+
+Summary: This file contains the adjacency matrix that depicts the social network representations of spotted hyenas, Crocuta crocuta [1,2,3]. In this network, nodes represent photo-identified individuals, and links represent their social relationships, the strength of which was inferred based on co-occurrence in groups. Each row and column is an individual and the cell values are the proportion of times individuals were seen together estimated by the Twice-weight Association index.
+
+Biological system: Spotted hyena social clan
+Level of organization: Population
+Node type: individuals
+Interaction type: social relationship
+Weighted links value: Twice-weight association index
+Network size (number of nodes): 35
+Connectance (realized/possible links): 0.62
+Main References:
+[1] Holekamp KE, Smith JE, Strelioff CC, Van Horn RC, Watts HE. 2011. Data from: Society, demography and genetic structure in the spotted hyena. Dryad Digital Repository. doi: http://dx.doi.org/10.5061/dryad.tg582
+[2] Holekamp KE, Smith JE, Strelioff CC, Van Horn RC, Watts HE. 2012. Society, demography and genetic structure in the spotted hyena. Mol Ecol 21:613-632. doi: 10.1111/j.1365-294X.2011.05240.x
+[3] Smith JE, Kolowski JM, Graham KE, Dawes SE, Holekamp KE. 2008. Social and ecological determinants of fission-fusion dynamics in the spotted hyaena. An Behav 76: 619-636. doi:10.1016/j.anbehav.2008.05.001
+
+
+10. File: met_frogs_Rst.txt
+
+Summary: This file contains the adjacency matrix that depicts the network representation of gene flow among among 27 pond-frogs populations in continental and insular China, comprised of nine neutral microsatellite loci [1,2]. In this network, nodes represent populations (rows/columns in the matrix) which are linked by their genetic similarity (cell values) inferred through variance of microsatellites alleles size, measured by 1-RST [3].
+
+Biological system: Insular frog populations
+Level of organization: Metapopulation
+Node type: populations
+Interaction type: Genetic similarity
+Weighted links value: 1-RST total allelic variance
+Network size (number of nodes): 27
+Connectance (realized/possible links): 0.72
+Main References:
+[1] Wang S, Zhu W, Gao X, Li X, Shaofei Y, Liu X, Yang J, Gao Z, Li Y. 2014 Population size and time since island isolation determine genetic diversity loss in insular frog populations. Mol Ecol 23:637-648. http://dx.doi.org/10.1111/mec.12634
+[2] Wang S, Zhu W, Gao X, Li X, Shaofei Y, Liu X, Yang J, Gao Z, Li Y. 2013. Data from: Population size and time since island isolation determine genetic diversity loss in insular frog populations. Dryad Digital Repository. http://dx.doi.org/10.5061/dryad.dq4g5
+[3] Slatkin M .1995. A measure of population subdivision based on microsatellite allele frequencies. Genetics 139:457-462.
+
+
+11. File: met_human_Rst.txt
+
+Summary: This file contains the adjacency matrix that depicts the network representation of gene flow among 62 human populations worldwide, comprised of 678 autosomal microsatellite loci: 43 populations with more than 10 unrelated individuals from [1,2] and 19 populations with more than 10 unrelated individuals from [3]. In this network, nodes represent populations (rows/columns in the matrix) which are linked by their genetic similarity (cell values) inferred through variance of microsatellites alleles size, measured by 1-RST [4]. 
+
+Biological system: Global human populations
+Level of organization: Metapopulation
+Node type: populations
+Interaction type: Genetic similarity
+Weighted links value: 1-RST total allelic variance
+Network size (number of nodes): 62
+Connectance (realized/possible links): 0.82
+Main References:
+[1] Rosenberg NA, Pritchard JK, Weber JL, Cann HM, Kidd KK, Zhivotovsky LA, Feldman MW. 2002. Genetic structure of human populations. Science 298:2381-2385. doi: 10.1126/science.1078311
+[2] Rosenberg NA, Mahajan S, Ramachandran S, Zhao C, Pritchard JK, Feldman MW. 2005. Clines, clusters, and the effect of study design on the inference of human population structure. PLoS Genet 1:e70. doi:10.1371/journal.pgen.0010070
+[3] Wang S, Lewis Jr CM, Jakobsson, Ramachandran S, Ray N, Bedoya G, Rojas W, Parra MV, Molina JA, Gallo C, Mazzotti G, Poletti G, Hill K, Hurtado AM, Labuda D, Klitz W, Barrantes R, Bortolini MC, Salzano FM, Petzl-Erler ML, Tsuneto LT, Llop E, Rothhammer F, Excoffier L, Feldman MW, Rosenberg NA, Ruiz-Linares A. 2007. Genetic variation and population structure in Native Americans. PLoS Genetics 3:e185. doi: 10.1371/journal.pgen.0030185
+[4] Slatkin M. 1995. A measure of population subdivision based on microsatellite allele frequencies. Genetics 139:457-462.
+
+
+12. File: met_sparrow_Rst.txt
+
+Summary: This file contains the adjacency matrix that depicts the network representation of gene flow among house sparrows populations from 15 Norwegian islands, comprised of 13 microsatellite loci, all nuclear and selectively neutral [1]. In this network, nodes represent populations (rows/columns in the matrix) which are linked by their genetic similarity (cell values) inferred through variance of microsatellites alleles size, measured by 1-RST [2]. 
+
+Biological system: Insular sparrow populations
+Level of organization: Metapopulation
+Node type: populations
+Interaction type: Genetic similarity
+Weighted links value: 1-RST total allelic variance
+Network size (number of nodes): 15
+Connectance (realized/possible links): 0.41
+Main References:
+[1] Baalsrud HT, S?ther BE, Hagen IJ, Myhre AM, Ringsby TH, P?rn H, Jensen H. 2014. Effects of population characteristics and structure on estimates of effective population size in a house sparrow metapopulation. Mol Ecol 23:2653-2668. doi: 10.1111/mec.12770
+[2] Slatkin M .1995. A measure of population subdivision based on microsatellite allele frequencies. Genetics 139:457-462.
+
+
+13. File: com_mangwet.txt
+
+Summary: This file contains the edge list that depicts the food web of the Mangrove estuary in wet season [1]. In food webs, nodes represent species and are linked by trophic interactions. The first two columns of the edge list contain a pair of species(nodes) and the third column values (links) indicates Energy transfer.
+
+Biological system: Food web of the Mangrove estuary in wet season
+Level of organization: Community
+Node type: species
+Interaction type: Trophic
+Weighted links value: Energy transfer
+Network size (number of nodes): 70
+Connectance (realized/possible links): 0.16
+Main References:
+[1] Christian R, Luczkovich J. 1999. Organizing and understanding a winter's seagrass foodweb network through effective trophic levels. Ecol Model 117: 99-124. doi:10.1016/S0304-3800(99)00022-8
+
+
+14. File: com_narragan.txt
+
+Summary: This file contains the edge list that depicts the food web of the Narragansett Bay estuary [1]. In food webs, nodes represent species and are linked by trophic interactions. The first two columns of the edge list contain a pair of species(nodes) and the third column values (links) indicates Energy transfer.
+
+Biological system: Food web of the Narragansett Bay estuary
+Level of organization: Community
+Node type: species
+Interaction type: Trophic
+Weighted links value: Energy transfer
+Network size (number of nodes): 26
+Connectance (realized/possible links): 0.11
+Main References:
+[1] Monaco ME, Ulanowicz RE. 1997. Comparative ecosystem trophic structure of three U.S. mid-Atlantic estuaries. Mar Ecol Prog Ser 161: 239-254.
+
+
+15. File: com_baydry.txt
+
+Summary: This file contains the edge list that depicts the food web of the Florida Bay in dry season [1]. In food webs, nodes represent species and are linked by trophic interactions. The first two columns of the edge list contain a pair of species(nodes) and the third column values (links) indicates Energy transfer.
+
+Biological system: Food web of the Florida Bay in dry season
+Level of organization: Community
+Node type: species
+Interaction type: Trophic
+Weighted links value: Energy transfer
+Network size (number of nodes): 89
+Connectance (realized/possible links): 0.12
+Main References:
+[1] Christian R, Luczkovich J. 1999. Organizing and understanding a winter's seagrass foodweb network through effective trophic levels. Ecol Model 117: 99-124. doi:10.1016/S0304-3800(99)00022-8
+
+
+16. File: met_gen_scmass.txt
+
+Summary: This file contains the adjacency matrix that depicts the taxonomic diversity of reef fishes along the Western Atlantic, including communities in the North-western Atlantic, Caribbean and the South-western Atlantic [1]. Nodes represent species grouped taxonomically at the genus level (161 genera) and are linked by co-occurrence in the sampled communities given by the quantitative asymmetric Bray-Curtis index of similarity. The index was corrected using size-corrected body mass [2] since it accounts for biological turnover among individuals of different mass and differences in size structure among different communities [3].
+
+Biological system: Reef fishes communities in a biogeographical region
+Level of organization: Metacommunity
+Node type: genera
+Interaction type: Co-occurrence in sampled sites
+Weighted links value: Bray-Curtis similarity
+Network size (number of nodes): 158
+Connectance (realized/possible links): 0.18
+Main References:
+[1] Floeter SR, Krohling W, Gasparini JL, Ferreira CE, Zalmon IR. 2007. Reef fish community structure on coastal islands of the southeastern Brazil: the influence of exposure and benthic cover. Environ Biol Fishes, 78:147-160. doi: 10.1007/s10641-006-9084-6
+[2] Allen AP, Gillooly JF, Brown JH. 2005. Linking the global carbon cycle to individual metabolism. Func Ecol 19:202-213. doi: 10.1111/j.1365-2435.2005.00952.x
+[3] Barneche DR, Kulbicki M, Floeter SR, Friedlander AM, Maina J, Allen AP. (2014). Scaling metabolism from individuals to reef-fish communities at broad spatial scales. Ecol Lett 17: 1067-1076. doi: 10.1111/ele.12309
+
+
+17. File: met_sd_scmass.txt
+
+Summary: This file contains the adjacency matrix that depicts the taxonomic diversity of reef fishes along the Western Atlantic, including communities in the North-western Atlantic, Caribbean and the South-western Atlantic [1]. Nodes represent species grouped in functional grouping (FG) (combination of 2 traits: Diet x Body Size Class (40 FGs)[2]) and are linked by co-occurrence in the sampled communities given by the quantitative asymmetric Bray-Curtis index of similarity. The index was corrected using size-corrected body mass [2] since it accounts for biological turnover among individuals of different mass and differences in size structure among different communities [3].
+
+Biological system: Reef fishes communities in a biogeographical region
+Level of organization: Metacommunity
+Node type: functional group (length+ diet)
+Interaction type: Co-occurrence in sampled sites
+Weighted links value: Bray-Curtis similarity
+Network size (number of nodes): 39
+Connectance (realized/possible links): 0.46
+Main References:
+[1] Floeter SR, Krohling W, Gasparini JL, Ferreira CE, Zalmon IR. 2007. Reef fish community structure on coastal islands of the southeastern Brazil: the influence of exposure and benthic cover. Environ Biol Fishes, 78:147-160. doi: 10.1007/s10641-006-9084-6
+[2] Mouillot D, Vill?ger S, Parravicini V, Kulbicki M, Arias-Gonzalez JE, Bender M, Chabanet P, Floeter SR, Friedlander A, Vigliola L, Bellwood DR. 2014). Functional over-redundancy and high functional vulnerability in global fish faunas on tropical reefs. Proc Natl Acad Sci USA 111:13757-13762. doi: 10.1073/pnas.1317625111
+[3] Allen AP, Gillooly JF, Brown JH. 2005. Linking the global carbon cycle to individual metabolism. Func Ecol 19:202-213. doi: 10.1111/j.1365-2435.2005.00952.x
+[4] Barneche DR, Kulbicki M, Floeter SR, Friedlander AM, Maina J, Allen AP. (2014). Scaling metabolism from individuals to reef-fish communities at broad spatial scales. Ecol Lett 17: 1067-1076. doi: 10.1111/ele.12309
+
+
+18. File: met_sdms_scmass.txt
+
+Summary: This file contains the adjacency matrix that depicts the taxonomic diversity of reef fishes along the Western Atlantic, including communities in the North-western Atlantic, Caribbean and the South-western Atlantic [1]. Nodes represent species grouped in functional grouping (FG) (combination of 4 traits: Diet x Body Size Class x Mobility x School size (122 FGs) [2]) and are linked by co-occurrence in the sampled communities given by the quantitative asymmetric Bray-Curtis index of similarity. The index was corrected using size-corrected body mass [2] since it accounts for biological turnover among individuals of different mass and differences in size structure among different communities [3].
+
+Biological system: Reef fishes communities in a biogeographical region
+Level of organization: Metacommunity
+Node type: functional group (length+ diet+ mobility+ school size)
+Interaction type: Co-occurrence in sampled sites
+Weighted links value: Bray-Curtis similarity
+Network size (number of nodes): 120
+Connectance (realized/possible links): 0.24
+Main References:
+[1] Floeter SR, Krohling W, Gasparini JL, Ferreira CE, Zalmon IR. 2007. Reef fish community structure on coastal islands of the southeastern Brazil: the influence of exposure and benthic cover. Environ Biol Fishes, 78:147-160. doi: 10.1007/s10641-006-9084-6
+[2] Mouillot D, Vill?ger S, Parravicini V, Kulbicki M, Arias-Gonzalez JE, Bender M, Chabanet P, Floeter SR, Friedlander A, Vigliola L, Bellwood DR. 2014). Functional over-redundancy and high functional vulnerability in global fish faunas on tropical reefs. Proc Natl Acad Sci USA 111:13757-13762. doi: 10.1073/pnas.1317625111
+[3] Allen AP, Gillooly JF, Brown JH. 2005. Linking the global carbon cycle to individual metabolism. Func Ecol 19:202-213. doi: 10.1111/j.1365-2435.2005.00952.x
+[4] Barneche DR, Kulbicki M, Floeter SR, Friedlander AM, Maina J, Allen AP. (2014). Scaling metabolism from individuals to reef-fish communities at broad spatial scales. Ecol Lett 17: 1067-1076. doi: 10.1111/ele.12309
+

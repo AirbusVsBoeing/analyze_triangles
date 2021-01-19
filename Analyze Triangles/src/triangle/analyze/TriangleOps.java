@@ -43,7 +43,6 @@ public class TriangleOps {
 	public List<Triangle> listTriangles(){
 		
 		
-		
 		for(int i = 0; i < this.sortedNodes.size(); i++) {
 		
 			for(int j = 0; j < this.sortedNodes.size(); j++) {
@@ -62,8 +61,6 @@ public class TriangleOps {
 	
 	
 	public List<Triple> forward(){
-		
-	
 		
 		for(Node v : sortedNodes) {
 			List<Pair> nV = v.neighbors;
@@ -121,7 +118,7 @@ public class TriangleOps {
 	// naive triangle listing algorithm by checking edges
 	public List<Triangle> listTrianglesE(){
 	
-		
+
 		for(int i = 0; i < this.edges.size(); i++) {
 			for(int j = i+1; j < this.edges.size(); j++) {
 				Edge e1 = this.edges.get(i);
@@ -157,7 +154,7 @@ public class TriangleOps {
 	
 	// checks is (i,j), (j,k), and (k,i) all three are in E -- if yes: then a new triangle is added to the list of triangles, else 
 	// do nothing
-	public boolean checkTriangle(int i, int j, int k) {
+	public void checkTriangle(int i, int j, int k) {
 		
 		
 		List<Pair> iList = this.graph.get(i);
@@ -165,10 +162,8 @@ public class TriangleOps {
 		List<Pair> kList = this.graph.get(k);
 		
 		if(hasNode(iList,j) && hasNode(jList,k) && hasNode(kList,i)) {
-			//this.triangles.add(new Triangle(new Edge(i,j,getWeight(j,iList)),new Edge(j,k,getWeight(k,jList)),new Edge(k,i,getWeight(i,kList))));
-			return true;
+			this.triangles.add(new Triangle(new Edge(i,j,getWeight(j,iList)),new Edge(j,k,getWeight(k,jList)),new Edge(k,i,getWeight(i,kList))));
 		}
-		return false;
 	}
 	
 	
